@@ -1,0 +1,32 @@
+{
+  "name": "clgsru/laravel-rabbitmq",
+  "type": "library",
+  "description": "The message broker on RabbitMQ for Laravel Framework.",
+  "keywords": ["laravel"],
+  "license": "GNU GPL v3",
+  "support": {
+    "issues": "https://github.com/clgsru/laravel-rabbitmq/issues",
+    "source": "https://github.com/clgsru/laravel-rabbitmq"
+  },
+  "authors": [
+    {
+      "name": "Alexander Arhitov",
+      "email": "clgsru@gmail.com"
+    }
+  ],
+  "require": {
+    "php": ">=7.4|^8.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "ClgsRu\\LaravelRabbitMQ\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "ClgsRu\\LaravelRabbitMQ\\Test\\": "tests/",
+    }
+  },
+  "minimum-stability": "stable",
+  "prefer-stable": true
+}
