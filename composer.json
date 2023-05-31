@@ -24,7 +24,7 @@
   },
   "autoload-dev": {
     "psr-4": {
-      "ClgsRu\\LaravelRabbitMQ\\Test\\": "tests/",
+      "ClgsRu\\LaravelRabbitMQ\\Test\\": "tests/"
     }
   },
   "minimum-stability": "stable",
