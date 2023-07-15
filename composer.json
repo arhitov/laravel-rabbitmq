@@ -3,7 +3,7 @@
   "type": "library",
   "description": "The message broker on RabbitMQ for Laravel Framework.",
   "keywords": ["laravel"],
-  "license": "GPL-3.0-only",
+  "license": "MIT",
   "support": {
     "issues": "https://github.com/clgsru/laravel-rabbitmq/issues",
     "source": "https://github.com/clgsru/laravel-rabbitmq",
@@ -17,8 +17,13 @@
   ],
   "require": {
     "php": ">=7.4|^8.0",
+    "php-amqplib/php-amqplib": "^3.0",
+    "ext-json": "*"
+  },
+  "require-dev": {
     "laravel/framework": "^8.75",
-    "php-amqplib/php-amqplib": "^3.0"
+    "phpunit/phpunit": "^9.5.10",
+    "mockery/mockery": "^1.4.4"
   },
   "autoload": {
     "psr-4": {
@@ -27,8 +32,17 @@
   },
   "autoload-dev": {
     "psr-4": {
-      "ClgsRu\\LaravelRabbitMQ\\Test\\": "tests/"
+      "ClgsRu\\LaravelRabbitMQ\\Tests\\": "tests/"
     }
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "ClgsRu\\LaravelRabbitMQ\\Providers\\LaravelRabbitMQServiceProvider"
+      ]
+    }
+  },
+  "scripts": {
   },
   "minimum-stability": "stable",
   "prefer-stable": true
