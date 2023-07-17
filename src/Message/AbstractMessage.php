@@ -2,9 +2,9 @@
 
 namespace ClgsRu\LaravelRabbitMQ\Message;
 
-use PhpAmqpLib\Message\AMQPMessage;
 use ClgsRu\LaravelRabbitMQ\Contracts\Message;
 use ClgsRu\LaravelRabbitMQ\Exception\FaitSetPropertyException;
+use PhpAmqpLib\Message\AMQPMessage;
 
 abstract class AbstractMessage implements Message
 {

@@ -6,7 +6,6 @@ use Illuminate\Console\Command;
 use Illuminate\Console\ConfirmableTrait;
 use ClgsRu\LaravelRabbitMQ\Contracts\Consumer as ContractsConsumer;
 use ClgsRu\LaravelRabbitMQ\Queue\Config as QueueConfig;
-use Exception;
 
 class QueuePurgeCommand extends Command
 {
