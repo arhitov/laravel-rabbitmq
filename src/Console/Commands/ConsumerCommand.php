@@ -7,6 +7,7 @@ use Exception;
 use ClgsRu\LaravelRabbitMQ\Contracts\Consumer as ContractsConsumer;
 use ClgsRu\LaravelRabbitMQ\Queue\Config as QueueConfig;
 use ClgsRu\LaravelRabbitMQ\Exception\ConsumerException;
+use ClgsRu\LaravelRabbitMQ\Exception\MessageException;
 
 class ConsumerCommand extends Command
 {
@@ -28,8 +29,8 @@ class ConsumerCommand extends Command
         $queue_config = new QueueConfig($queue);
         $consumer->setQueue($queue_config);
 
-        try {
-            while (true) {
+        while (true) {
+            try {
                 $message = $consumer->pop();
                 if (! is_null($message)) {
                     $this->info('Message: ' . implode(', ', (function() use ($message) {
@@ -45,11 +46,12 @@ class ConsumerCommand extends Command
                     })()));
                     dump($message->getBody());
                 }
-                sleep((int)($this->option('delay') ?? 5));
-                usleep(200000);// 0.2s обязательная задержка, чтобы цикл не утилизировал CPU под 100%
+            } catch (ConsumerException|MessageException $e) {
+                $this->error(get_class($e) . ': ' . $e->getMessage());
             }
-        } catch (ConsumerException $e) {
-            $this->error('ConsumerException: ' . $e->getMessage());
+
+            sleep((int)($this->option('delay') ?? 5));
+            usleep(200000);// 0.2s обязательная задержка, чтобы цикл не утилизировал CPU под 100%
         }
     }
 }
