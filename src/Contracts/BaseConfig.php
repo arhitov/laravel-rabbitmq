@@ -4,7 +4,7 @@ namespace ClgsRu\LaravelRabbitMQ\Contracts;
 
 use Exception;
 
-abstract class BaseConfig implements InterfaceBaseConfig
+abstract class BaseConfig implements InterfaceConfig
 {
     const LIST_ALLOWED_PROPERTY_FOR_GET = [];
 

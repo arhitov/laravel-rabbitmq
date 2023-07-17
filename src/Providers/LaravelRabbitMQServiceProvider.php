@@ -15,6 +15,7 @@ use ClgsRu\LaravelRabbitMQ\Contracts\Publisher as ContractsPublisher;
 use ClgsRu\LaravelRabbitMQ\Publishers\Publisher;
 use ClgsRu\LaravelRabbitMQ\Console\Commands\ConsumerCommand;
 use ClgsRu\LaravelRabbitMQ\Console\Commands\PublisherCommand;
+use ClgsRu\LaravelRabbitMQ\Console\Commands\QueuePurgeCommand;
 
 class LaravelRabbitMQServiceProvider extends ServiceProvider
 {
@@ -50,6 +51,7 @@ class LaravelRabbitMQServiceProvider extends ServiceProvider
             $this->commands([
                 ConsumerCommand::class,
                 PublisherCommand::class,
+                QueuePurgeCommand::class,
             ]);
         }
     }

@@ -2,7 +2,7 @@
 
 namespace ClgsRu\LaravelRabbitMQ\Contracts;
 
-interface ConnectionConfig extends InterfaceBaseConfig
+interface ConnectionConfig extends InterfaceConfig
 {
     public function getAttributesForStreamConnection(): array;
 }

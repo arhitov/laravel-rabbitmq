@@ -3,11 +3,11 @@
 namespace ClgsRu\LaravelRabbitMQ\Console\Commands;
 
 use Illuminate\Console\Command;
-use Exception;
 use ClgsRu\LaravelRabbitMQ\Contracts\Consumer as ContractsConsumer;
 use ClgsRu\LaravelRabbitMQ\Queue\Config as QueueConfig;
-use ClgsRu\LaravelRabbitMQ\Exception\ConsumerException;
+use ClgsRu\LaravelRabbitMQ\Exception\QueueException;
 use ClgsRu\LaravelRabbitMQ\Exception\MessageException;
+use Exception;
 
 class ConsumerCommand extends Command
 {
@@ -25,13 +25,13 @@ class ConsumerCommand extends Command
      */
     public function handle(ContractsConsumer $consumer): void
     {
-        $queue = $this->argument('queue');
-        $queue_config = new QueueConfig($queue);
-        $consumer->setQueue($queue_config);
+        $queue_name = $this->argument('queue');
+        $queue_config = new QueueConfig($queue_name);
+        $queue = $consumer->makeQueue($queue_config);
 
         while (true) {
             try {
-                $message = $consumer->pop();
+                $message = $queue->pop();
                 if (! is_null($message)) {
                     $this->info('Message: ' . implode(', ', (function() use ($message) {
                         $result = [];
@@ -46,7 +46,7 @@ class ConsumerCommand extends Command
                     })()));
                     dump($message->getBody());
                 }
-            } catch (ConsumerException|MessageException $e) {
+            } catch (QueueException|MessageException $e) {
                 $this->error(get_class($e) . ': ' . $e->getMessage());
             }
 

@@ -2,6 +2,6 @@
 
 namespace ClgsRu\LaravelRabbitMQ\Contracts;
 
-interface QueueConfig extends InterfaceConfig
+interface InterfaceConfig
 {
 }
