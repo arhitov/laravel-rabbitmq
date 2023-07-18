@@ -1,6 +1,6 @@
 <?php
 
-namespace ClgsRu\LaravelRabbitMQ\Connections;
+namespace Arhitov\LaravelRabbitMQ\Connections;
 
 abstract class ConnectionFactory
 {

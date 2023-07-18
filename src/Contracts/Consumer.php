@@ -1,8 +1,8 @@
 <?php
 
-namespace ClgsRu\LaravelRabbitMQ\Contracts;
+namespace Arhitov\LaravelRabbitMQ\Contracts;
 
-use ClgsRu\LaravelRabbitMQ\Queue\Queue;
+use Arhitov\LaravelRabbitMQ\Queue\Queue;
 
 abstract class Consumer
 {

@@ -1,9 +1,9 @@
 <?php
 
-namespace ClgsRu\LaravelRabbitMQ\Consumers;
+namespace Arhitov\LaravelRabbitMQ\Consumers;
 
-use ClgsRu\LaravelRabbitMQ\Contracts\Consumer as ContractsConsumer;
-//use ClgsRu\LaravelRabbitMQ\Contracts\ConsumerMessage;
+use Arhitov\LaravelRabbitMQ\Contracts\Consumer as ContractsConsumer;
+//use Arhitov\LaravelRabbitMQ\Contracts\ConsumerMessage;
 
 class Consumer extends ContractsConsumer
 {

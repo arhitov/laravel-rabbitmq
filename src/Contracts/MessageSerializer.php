@@ -1,8 +1,8 @@
 <?php
 
-namespace ClgsRu\LaravelRabbitMQ\Contracts;
+namespace Arhitov\LaravelRabbitMQ\Contracts;
 
-use ClgsRu\LaravelRabbitMQ\Exception\MessageSerializerException;
+use Arhitov\LaravelRabbitMQ\Exception\MessageSerializerException;
 
 interface MessageSerializer
 {

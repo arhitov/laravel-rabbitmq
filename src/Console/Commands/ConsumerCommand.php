@@ -1,12 +1,12 @@
 <?php
 
-namespace ClgsRu\LaravelRabbitMQ\Console\Commands;
+namespace Arhitov\LaravelRabbitMQ\Console\Commands;
 
 use Illuminate\Console\Command;
-use ClgsRu\LaravelRabbitMQ\Contracts\Consumer as ContractsConsumer;
-use ClgsRu\LaravelRabbitMQ\Queue\Config as QueueConfig;
-use ClgsRu\LaravelRabbitMQ\Exception\QueueException;
-use ClgsRu\LaravelRabbitMQ\Exception\MessageException;
+use Arhitov\LaravelRabbitMQ\Contracts\Consumer as ContractsConsumer;
+use Arhitov\LaravelRabbitMQ\Queue\Config as QueueConfig;
+use Arhitov\LaravelRabbitMQ\Exception\QueueException;
+use Arhitov\LaravelRabbitMQ\Exception\MessageException;
 use Exception;
 
 class ConsumerCommand extends Command
@@ -29,6 +29,9 @@ class ConsumerCommand extends Command
         $queue_config = new QueueConfig($queue_name);
         $queue = $consumer->makeQueue($queue_config);
 
+        $memory_last = memory_get_usage(true);
+        $this->error('Memory: ' . $memory_last);
+
         while (true) {
             try {
                 $message = $queue->pop();
@@ -45,6 +48,12 @@ class ConsumerCommand extends Command
                         return $result;
                     })()));
                     dump($message->getBody());
+                }
+                $memory_now = memory_get_usage(true);
+                $memory_last_10 = $memory_last / 10;
+                if ($memory_now > $memory_last + $memory_last_10 || $memory_now < $memory_last - $memory_last_10) {
+                    $memory_last = $memory_now;
+                    $this->error('Memory: ' . $memory_last);
                 }
             } catch (QueueException|MessageException $e) {
                 $this->error(get_class($e) . ': ' . $e->getMessage());

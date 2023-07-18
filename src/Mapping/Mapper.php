@@ -1,8 +1,8 @@
 <?php
 
-namespace ClgsRu\LaravelRabbitMQ\Mapping;
+namespace Arhitov\LaravelRabbitMQ\Mapping;
 
-use ClgsRu\LaravelRabbitMQ\Contracts\Connection;
+use Arhitov\LaravelRabbitMQ\Contracts\Connection;
 use PhpAmqpLib\Wire\AMQPTable;
 
 class Mapper

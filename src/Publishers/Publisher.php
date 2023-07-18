@@ -1,8 +1,8 @@
 <?php
 
-namespace ClgsRu\LaravelRabbitMQ\Publishers;
+namespace Arhitov\LaravelRabbitMQ\Publishers;
 
-use ClgsRu\LaravelRabbitMQ\Contracts\Publisher as ContractsPublisher;
+use Arhitov\LaravelRabbitMQ\Contracts\Publisher as ContractsPublisher;
 
 class Publisher extends ContractsPublisher
 {

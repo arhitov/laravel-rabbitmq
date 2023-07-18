@@ -1,10 +1,10 @@
 <?php
 
-namespace ClgsRu\LaravelRabbitMQ\Message\Deserializers;
+namespace Arhitov\LaravelRabbitMQ\Message\Deserializers;
 
-use ClgsRu\LaravelRabbitMQ\Contracts\ConsumerMessage;
-use ClgsRu\LaravelRabbitMQ\Contracts\MessageDeserializer;
-use ClgsRu\LaravelRabbitMQ\Exception\MessageDeserializerException;
+use Arhitov\LaravelRabbitMQ\Contracts\ConsumerMessage;
+use Arhitov\LaravelRabbitMQ\Contracts\MessageDeserializer;
+use Arhitov\LaravelRabbitMQ\Exception\MessageDeserializerException;
 use JsonException;
 
 class JsonDeserializer implements MessageDeserializer

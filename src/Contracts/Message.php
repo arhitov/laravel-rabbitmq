@@ -1,6 +1,6 @@
 <?php
 
-namespace ClgsRu\LaravelRabbitMQ\Contracts;
+namespace Arhitov\LaravelRabbitMQ\Contracts;
 
 interface Message
 {

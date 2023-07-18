@@ -1,11 +1,11 @@
 <?php
 
-namespace ClgsRu\LaravelRabbitMQ\Console\Commands;
+namespace Arhitov\LaravelRabbitMQ\Console\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Console\ConfirmableTrait;
-use ClgsRu\LaravelRabbitMQ\Contracts\Consumer as ContractsConsumer;
-use ClgsRu\LaravelRabbitMQ\Queue\Config as QueueConfig;
+use Arhitov\LaravelRabbitMQ\Contracts\Consumer as ContractsConsumer;
+use Arhitov\LaravelRabbitMQ\Queue\Config as QueueConfig;
 
 class QueuePurgeCommand extends Command
 {

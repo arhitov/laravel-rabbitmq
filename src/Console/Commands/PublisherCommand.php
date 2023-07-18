@@ -1,11 +1,11 @@
 <?php
 
-namespace ClgsRu\LaravelRabbitMQ\Console\Commands;
+namespace Arhitov\LaravelRabbitMQ\Console\Commands;
 
 use Illuminate\Console\Command;
-use ClgsRu\LaravelRabbitMQ\Contracts\Publisher as ContractsPublisher;
-use ClgsRu\LaravelRabbitMQ\Message\PublishingMessage;
-use ClgsRu\LaravelRabbitMQ\Exception\PublisherException;
+use Arhitov\LaravelRabbitMQ\Contracts\Publisher as ContractsPublisher;
+use Arhitov\LaravelRabbitMQ\Message\PublishingMessage;
+use Arhitov\LaravelRabbitMQ\Exception\PublisherException;
 
 class PublisherCommand extends Command
 {

@@ -1,11 +1,11 @@
 <?php
 
-namespace ClgsRu\LaravelRabbitMQ\Message;
+namespace Arhitov\LaravelRabbitMQ\Message;
 
-use ClgsRu\LaravelRabbitMQ\Contracts\PublisherMessage;
-use ClgsRu\LaravelRabbitMQ\Contracts\MessageSerializer;
-use ClgsRu\LaravelRabbitMQ\Exception\MessageException;
-use ClgsRu\LaravelRabbitMQ\Exception\MessageSerializerException;
+use Arhitov\LaravelRabbitMQ\Contracts\PublisherMessage;
+use Arhitov\LaravelRabbitMQ\Contracts\MessageSerializer;
+use Arhitov\LaravelRabbitMQ\Exception\MessageException;
+use Arhitov\LaravelRabbitMQ\Exception\MessageSerializerException;
 use Illuminate\Support\Facades\App;
 
 class PublishingMessage extends AbstractMessage implements PublisherMessage

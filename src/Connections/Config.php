@@ -1,9 +1,9 @@
 <?php
 
-namespace ClgsRu\LaravelRabbitMQ\Connections;
+namespace Arhitov\LaravelRabbitMQ\Connections;
 
-use ClgsRu\LaravelRabbitMQ\Contracts\BaseConfig;
-use ClgsRu\LaravelRabbitMQ\Contracts\ConnectionConfig;
+use Arhitov\LaravelRabbitMQ\Contracts\BaseConfig;
+use Arhitov\LaravelRabbitMQ\Contracts\ConnectionConfig;
 
 /**
  * @property string $host

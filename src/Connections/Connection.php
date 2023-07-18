@@ -1,9 +1,9 @@
 <?php
 
-namespace ClgsRu\LaravelRabbitMQ\Connections;
+namespace Arhitov\LaravelRabbitMQ\Connections;
 
-use ClgsRu\LaravelRabbitMQ\Contracts\Connection as ContractsConnection;
-use ClgsRu\LaravelRabbitMQ\Contracts\ConnectionConfig;
+use Arhitov\LaravelRabbitMQ\Contracts\Connection as ContractsConnection;
+use Arhitov\LaravelRabbitMQ\Contracts\ConnectionConfig;
 use PhpAmqpLib\Connection\AMQPStreamConnection;
 use PhpAmqpLib\Channel\AMQPChannel;
 use Exception;

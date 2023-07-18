@@ -1,9 +1,9 @@
 <?php
 
-namespace ClgsRu\LaravelRabbitMQ\Queue;
+namespace Arhitov\LaravelRabbitMQ\Queue;
 
-use ClgsRu\LaravelRabbitMQ\Contracts\QueueConfig;
-use ClgsRu\LaravelRabbitMQ\Contracts\BaseConfig;
+use Arhitov\LaravelRabbitMQ\Contracts\QueueConfig;
+use Arhitov\LaravelRabbitMQ\Contracts\BaseConfig;
 
 /**
  * @property string $name

@@ -1,11 +1,11 @@
 <?php
 
-namespace ClgsRu\LaravelRabbitMQ\Message;
+namespace Arhitov\LaravelRabbitMQ\Message;
 
-use ClgsRu\LaravelRabbitMQ\Contracts\ConsumerMessage;
-use ClgsRu\LaravelRabbitMQ\Contracts\MessageDeserializer;
-use ClgsRu\LaravelRabbitMQ\Exception\MessageException;
-use ClgsRu\LaravelRabbitMQ\Exception\MessageDeserializerException;
+use Arhitov\LaravelRabbitMQ\Contracts\ConsumerMessage;
+use Arhitov\LaravelRabbitMQ\Contracts\MessageDeserializer;
+use Arhitov\LaravelRabbitMQ\Exception\MessageException;
+use Arhitov\LaravelRabbitMQ\Exception\MessageDeserializerException;
 use Illuminate\Support\Facades\App;
 
 class ConsumedMessage extends AbstractMessage implements ConsumerMessage

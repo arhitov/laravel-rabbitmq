@@ -1,8 +1,8 @@
 <?php
 
-namespace ClgsRu\LaravelRabbitMQ\Contracts;
+namespace Arhitov\LaravelRabbitMQ\Contracts;
 
-use ClgsRu\LaravelRabbitMQ\Exception\MessageDeserializerException;
+use Arhitov\LaravelRabbitMQ\Exception\MessageDeserializerException;
 
 interface MessageDeserializer
 {

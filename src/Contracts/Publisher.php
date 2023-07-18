@@ -1,9 +1,9 @@
 <?php
 
-namespace ClgsRu\LaravelRabbitMQ\Contracts;
+namespace Arhitov\LaravelRabbitMQ\Contracts;
 
-use ClgsRu\LaravelRabbitMQ\Message\PublishingMessage;
-use ClgsRu\LaravelRabbitMQ\Exception\PublisherException;
+use Arhitov\LaravelRabbitMQ\Message\PublishingMessage;
+use Arhitov\LaravelRabbitMQ\Exception\PublisherException;
 use PhpAmqpLib\Exception\AMQPExceptionInterface;
 use PhpAmqpLib\Message\AMQPMessage;
 use PhpAmqpLib\Wire\AMQPTable;

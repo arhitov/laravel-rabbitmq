@@ -1,12 +1,12 @@
 <?php
 
-namespace ClgsRu\LaravelRabbitMQ\Queue;
+namespace Arhitov\LaravelRabbitMQ\Queue;
 
-use ClgsRu\LaravelRabbitMQ\Contracts\ConsumerMessage;
-use ClgsRu\LaravelRabbitMQ\Contracts\QueueConfig;
-use ClgsRu\LaravelRabbitMQ\Exception\QueueException;
-use ClgsRu\LaravelRabbitMQ\Exception\FaitSetPropertyException;
-use ClgsRu\LaravelRabbitMQ\Message\ConsumedMessage;
+use Arhitov\LaravelRabbitMQ\Contracts\ConsumerMessage;
+use Arhitov\LaravelRabbitMQ\Contracts\QueueConfig;
+use Arhitov\LaravelRabbitMQ\Exception\QueueException;
+use Arhitov\LaravelRabbitMQ\Exception\FaitSetPropertyException;
+use Arhitov\LaravelRabbitMQ\Message\ConsumedMessage;
 use PhpAmqpLib\Exception\AMQPExceptionInterface;
 use PhpAmqpLib\Channel\AMQPChannel;
 

@@ -1,21 +1,21 @@
 <?php
 
-namespace ClgsRu\LaravelRabbitMQ\Providers;
+namespace Arhitov\LaravelRabbitMQ\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use ClgsRu\LaravelRabbitMQ\Contracts\Connection as ContractsConnection;
-use ClgsRu\LaravelRabbitMQ\Connections\ConnectionFactory;
-use ClgsRu\LaravelRabbitMQ\Contracts\MessageSerializer;
-use ClgsRu\LaravelRabbitMQ\Message\Serializers\JsonSerializer;
-use ClgsRu\LaravelRabbitMQ\Contracts\MessageDeserializer;
-use ClgsRu\LaravelRabbitMQ\Message\Deserializers\JsonDeserializer;
-use ClgsRu\LaravelRabbitMQ\Contracts\Consumer as ContractsConsumer;
-use ClgsRu\LaravelRabbitMQ\Consumers\Consumer as Consumer;
-use ClgsRu\LaravelRabbitMQ\Contracts\Publisher as ContractsPublisher;
-use ClgsRu\LaravelRabbitMQ\Publishers\Publisher;
-use ClgsRu\LaravelRabbitMQ\Console\Commands\ConsumerCommand;
-use ClgsRu\LaravelRabbitMQ\Console\Commands\PublisherCommand;
-use ClgsRu\LaravelRabbitMQ\Console\Commands\QueuePurgeCommand;
+use Arhitov\LaravelRabbitMQ\Contracts\Connection as ContractsConnection;
+use Arhitov\LaravelRabbitMQ\Connections\ConnectionFactory;
+use Arhitov\LaravelRabbitMQ\Contracts\MessageSerializer;
+use Arhitov\LaravelRabbitMQ\Message\Serializers\JsonSerializer;
+use Arhitov\LaravelRabbitMQ\Contracts\MessageDeserializer;
+use Arhitov\LaravelRabbitMQ\Message\Deserializers\JsonDeserializer;
+use Arhitov\LaravelRabbitMQ\Contracts\Consumer as ContractsConsumer;
+use Arhitov\LaravelRabbitMQ\Consumers\Consumer as Consumer;
+use Arhitov\LaravelRabbitMQ\Contracts\Publisher as ContractsPublisher;
+use Arhitov\LaravelRabbitMQ\Publishers\Publisher;
+use Arhitov\LaravelRabbitMQ\Console\Commands\ConsumerCommand;
+use Arhitov\LaravelRabbitMQ\Console\Commands\PublisherCommand;
+use Arhitov\LaravelRabbitMQ\Console\Commands\QueuePurgeCommand;
 
 class LaravelRabbitMQServiceProvider extends ServiceProvider
 {

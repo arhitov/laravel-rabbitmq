@@ -1,6 +1,6 @@
 <?php
 
-namespace ClgsRu\LaravelRabbitMQ\Exception;
+namespace Arhitov\LaravelRabbitMQ\Exception;
 
 use Exception;
 

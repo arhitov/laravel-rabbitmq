@@ -1,10 +1,10 @@
 <?php
 
-namespace ClgsRu\LaravelRabbitMQ\Message\Serializers;
+namespace Arhitov\LaravelRabbitMQ\Message\Serializers;
 
-use ClgsRu\LaravelRabbitMQ\Contracts\PublisherMessage;
-use ClgsRu\LaravelRabbitMQ\Contracts\MessageSerializer;
-use ClgsRu\LaravelRabbitMQ\Exception\MessageSerializerException;
+use Arhitov\LaravelRabbitMQ\Contracts\PublisherMessage;
+use Arhitov\LaravelRabbitMQ\Contracts\MessageSerializer;
+use Arhitov\LaravelRabbitMQ\Exception\MessageSerializerException;
 use JsonException;
 
 class JsonSerializer implements MessageSerializer

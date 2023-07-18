@@ -1,13 +1,13 @@
 {
-  "name": "clgsru/laravel-rabbitmq",
+  "name": "arhitov/laravel-rabbitmq",
   "type": "library",
   "description": "The message broker on RabbitMQ for Laravel Framework.",
   "keywords": ["laravel"],
   "license": "MIT",
   "support": {
-    "issues": "https://github.com/clgsru/laravel-rabbitmq/issues",
-    "source": "https://github.com/clgsru/laravel-rabbitmq",
-    "packagist": "https://packagist.org/packages/clgsru/laravel-rabbitmq"
+    "issues": "https://github.com/arhitov/laravel-rabbitmq/issues",
+    "source": "https://github.com/arhitov/laravel-rabbitmq",
+    "packagist": "https://packagist.org/packages/arhitov/laravel-rabbitmq"
   },
   "authors": [
     {
@@ -27,18 +27,18 @@
   },
   "autoload": {
     "psr-4": {
-      "ClgsRu\\LaravelRabbitMQ\\": "src/"
+      "Arhitov\\LaravelRabbitMQ\\": "src/"
     }
   },
   "autoload-dev": {
     "psr-4": {
-      "ClgsRu\\LaravelRabbitMQ\\Tests\\": "tests/"
+      "Arhitov\\LaravelRabbitMQ\\Tests\\": "tests/"
     }
   },
   "extra": {
     "laravel": {
       "providers": [
-        "ClgsRu\\LaravelRabbitMQ\\Providers\\LaravelRabbitMQServiceProvider"
+        "Arhitov\\LaravelRabbitMQ\\Providers\\LaravelRabbitMQServiceProvider"
       ]
     }
   },

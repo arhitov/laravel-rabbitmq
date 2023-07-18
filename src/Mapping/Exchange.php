@@ -1,6 +1,6 @@
 <?php
 
-namespace ClgsRu\LaravelRabbitMQ\Mapping;
+namespace Arhitov\LaravelRabbitMQ\Mapping;
 
 use PhpAmqpLib\Channel\AMQPChannel;
 
