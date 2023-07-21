@@ -45,7 +45,7 @@ class LaravelRabbitMQServiceProvider extends ServiceProvider
     {
         $this->publishes([
             __DIR__ . '/../../config/rabbitmq.php' => config_path('rabbitmq.php'),
-        ], 'laravel-rabbitmq-config');
+        ], 'config');
 
         if ($this->app->runningInConsole()) {
             $this->commands([
