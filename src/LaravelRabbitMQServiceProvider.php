@@ -1,6 +1,6 @@
 <?php
 
-namespace Arhitov\LaravelRabbitMQ\Providers;
+namespace Arhitov\LaravelRabbitMQ;
 
 use Illuminate\Support\ServiceProvider;
 use Arhitov\LaravelRabbitMQ\Contracts\Connection as ContractsConnection;
@@ -10,9 +10,9 @@ use Arhitov\LaravelRabbitMQ\Message\Serializers\JsonSerializer;
 use Arhitov\LaravelRabbitMQ\Contracts\MessageDeserializer;
 use Arhitov\LaravelRabbitMQ\Message\Deserializers\JsonDeserializer;
 use Arhitov\LaravelRabbitMQ\Contracts\Consumer as ContractsConsumer;
-use Arhitov\LaravelRabbitMQ\Consumers\Consumer as Consumer;
+use Arhitov\LaravelRabbitMQ\Consumer\Consumer;
 use Arhitov\LaravelRabbitMQ\Contracts\Publisher as ContractsPublisher;
-use Arhitov\LaravelRabbitMQ\Publishers\Publisher;
+use Arhitov\LaravelRabbitMQ\Publisher\Publisher;
 use Arhitov\LaravelRabbitMQ\Console\Commands\ConsumerCommand;
 use Arhitov\LaravelRabbitMQ\Console\Commands\PublisherCommand;
 use Arhitov\LaravelRabbitMQ\Console\Commands\QueuePurgeCommand;
@@ -25,7 +25,7 @@ class LaravelRabbitMQServiceProvider extends ServiceProvider
     public function register(): void
     {
         $this->mergeConfigFrom(
-            __DIR__ . '/../../config/rabbitmq.php',
+            __DIR__ . '/../config/rabbitmq.php',
             'rabbitmq'
         );
 
@@ -44,8 +44,8 @@ class LaravelRabbitMQServiceProvider extends ServiceProvider
     public function boot(): void
     {
         $this->publishes([
-            __DIR__ . '/../../config/rabbitmq.php' => config_path('rabbitmq.php'),
-        ], 'laravel-rabbitmq-config');
+            __DIR__ . '/../config/rabbitmq.php' => config_path('rabbitmq.php'),
+        ], 'config');
 
         if ($this->app->runningInConsole()) {
             $this->commands([

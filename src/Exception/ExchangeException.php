@@ -2,6 +2,6 @@
 
 namespace Arhitov\LaravelRabbitMQ\Exception;
 
-class MessageSerializerException extends Exception
+class ExchangeException extends Exception
 {
 }

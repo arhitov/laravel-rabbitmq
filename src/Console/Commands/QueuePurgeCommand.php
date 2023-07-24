@@ -2,10 +2,10 @@
 
 namespace Arhitov\LaravelRabbitMQ\Console\Commands;
 
+use Arhitov\LaravelRabbitMQ\Exception\QueueException;
 use Illuminate\Console\Command;
 use Illuminate\Console\ConfirmableTrait;
 use Arhitov\LaravelRabbitMQ\Contracts\Consumer as ContractsConsumer;
-use Arhitov\LaravelRabbitMQ\Queue\Config as QueueConfig;
 
 class QueuePurgeCommand extends Command
 {
@@ -18,6 +18,8 @@ class QueuePurgeCommand extends Command
 
     /**
      * @param ContractsConsumer $consumer
+     * @return void
+     * @throws QueueException
      */
     public function handle(ContractsConsumer $consumer): void
     {
@@ -26,8 +28,7 @@ class QueuePurgeCommand extends Command
         }
 
         $queue_name = $this->argument('queue');
-        $queue_config = new QueueConfig($queue_name);
-        $queue = $consumer->makeQueue($queue_config);
+        $queue = $consumer->bindQueue($queue_name);
         $queue->purge();
 
         $this->info('Queue purged successfully');

@@ -2,10 +2,10 @@
 
 namespace Arhitov\LaravelRabbitMQ\Console\Commands;
 
-use Illuminate\Console\Command;
 use Arhitov\LaravelRabbitMQ\Contracts\Publisher as ContractsPublisher;
+use Arhitov\LaravelRabbitMQ\Exception\PublisherException as PublisherException;
 use Arhitov\LaravelRabbitMQ\Message\PublishingMessage;
-use Arhitov\LaravelRabbitMQ\Exception\PublisherException;
+use Illuminate\Console\Command;
 
 class PublisherCommand extends Command
 {
@@ -20,6 +20,10 @@ class PublisherCommand extends Command
                         {--R|routing_key= : Routing key}';
     protected $description = 'A RabbitMQ Publisher.';
 
+    /**
+     * @param ContractsPublisher $publisher
+     * @return void
+     */
     public function handle(ContractsPublisher $publisher): void
     {
         if (! ($exchange = $this->option('exchange'))) {
@@ -32,8 +36,8 @@ class PublisherCommand extends Command
         $message = new PublishingMessage(
             $exchange ?? '',
             $queue ?? '',
-            $this->option('routing_key'),
-            $this->argument('message')
+            $this->argument('message'),
+            $this->option('routing_key')
         );
 
         try {

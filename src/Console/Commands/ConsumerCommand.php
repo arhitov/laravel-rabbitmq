@@ -4,10 +4,9 @@ namespace Arhitov\LaravelRabbitMQ\Console\Commands;
 
 use Illuminate\Console\Command;
 use Arhitov\LaravelRabbitMQ\Contracts\Consumer as ContractsConsumer;
-use Arhitov\LaravelRabbitMQ\Queue\Config as QueueConfig;
 use Arhitov\LaravelRabbitMQ\Exception\QueueException;
 use Arhitov\LaravelRabbitMQ\Exception\MessageException;
-use Exception;
+use Arhitov\LaravelRabbitMQ\Exception\FaitSetPropertyException;
 
 class ConsumerCommand extends Command
 {
@@ -21,13 +20,15 @@ class ConsumerCommand extends Command
     protected $description = 'A RabbitMQ Consumer.';
 
     /**
-     * @throws Exception
+     * @param ContractsConsumer $consumer
+     * @return void
+     * @throws QueueException
+     * @throws FaitSetPropertyException
      */
     public function handle(ContractsConsumer $consumer): void
     {
         $queue_name = $this->argument('queue');
-        $queue_config = new QueueConfig($queue_name);
-        $queue = $consumer->makeQueue($queue_config);
+        $queue = $consumer->bindQueue($queue_name);
 
         $memory_last = memory_get_usage(true);
         $this->error('Memory: ' . $memory_last);

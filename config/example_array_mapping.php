@@ -17,7 +17,7 @@ return [
         'queue_a' => [
             // The default values will be used here.
         ],
-        'queue_b' => [
+        'queue_b' => [ // MultiMode
             'name' => ['queue_%N%', 10] // 10 queues will be created [queue_0, ..., queue_9]
             // Other values will be the default.
         ],

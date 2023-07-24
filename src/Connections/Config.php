@@ -2,20 +2,10 @@
 
 namespace Arhitov\LaravelRabbitMQ\Connections;
 
-use Arhitov\LaravelRabbitMQ\Contracts\BaseConfig;
 use Arhitov\LaravelRabbitMQ\Contracts\ConnectionConfig;
 
-/**
- * @property string $host
- * @property string $port
- * @property string $user
- * @property string $password
- * @property string $vhost
- */
-class Config extends BaseConfig implements ConnectionConfig
+class Config implements ConnectionConfig
 {
-    const LIST_ALLOWED_PROPERTY_FOR_GET = ['host', 'port', 'user', 'password', 'vhost'];
-
     protected string $host;
     protected string $port;
     protected string $user;
@@ -33,6 +23,9 @@ class Config extends BaseConfig implements ConnectionConfig
         }
     }
 
+    /**
+     * @return array
+     */
     public function getAttributesForStreamConnection(): array
     {
         return [
@@ -42,5 +35,45 @@ class Config extends BaseConfig implements ConnectionConfig
             $this->password,
             $this->vhost,
         ];
+    }
+
+    /**
+     * @return string
+     */
+    public function getHost(): string
+    {
+        return $this->host;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPort(): string
+    {
+        return $this->port;
+    }
+
+    /**
+     * @return string
+     */
+    public function getUser(): string
+    {
+        return $this->user;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPassword(): string
+    {
+        return $this->password;
+    }
+
+    /**
+     * @return string
+     */
+    public function getVhost(): string
+    {
+        return $this->vhost;
     }
 }

@@ -2,30 +2,35 @@
 
 namespace Arhitov\LaravelRabbitMQ\Contracts;
 
+use Arhitov\LaravelRabbitMQ\Exception\ConfigException;
+use Arhitov\LaravelRabbitMQ\Exception\QueueException;
 use Arhitov\LaravelRabbitMQ\Queue\Queue;
+use Arhitov\LaravelRabbitMQ\Queue\Config as QueueConfig;
 
-abstract class Consumer
+interface Consumer
 {
-    protected Connection $connect;
-    protected Queue $queue;
+    /**
+     * @param Connection $connect
+     */
+    public function __construct(Connection $connect);
 
-    public function __construct(Connection $connect)
-    {
-        $this->connect = $connect;
-    }
+    /**
+     * @return void
+     */
+    public function connect(): void;
+
+    /**
+     * @return bool
+     */
+    public function isConnected(): bool;
 
 //    abstract public function handle(ConsumerMessage $message): void;
 
-//    /**
-//     * @throws Throwable
-//     */
-//    public function failed(string $message, string $topic, Throwable $exception): void
-//    {
-//        throw $exception;
-//    }
-
-    public function makeQueue(QueueConfig $config): Queue
-    {
-        return new Queue($this->connect->channel(), $config);
-    }
+    /**
+     * @param string|QueueConfig|array $queue
+     * @return Queue
+     * @throws ConfigException
+     * @throws QueueException
+     */
+    public function bindQueue($queue): Queue;
 }
