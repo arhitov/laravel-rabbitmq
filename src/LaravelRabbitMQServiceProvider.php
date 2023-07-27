@@ -14,6 +14,7 @@ use Arhitov\LaravelRabbitMQ\Consumer\Consumer;
 use Arhitov\LaravelRabbitMQ\Contracts\Publisher as ContractsPublisher;
 use Arhitov\LaravelRabbitMQ\Publisher\Publisher;
 use Arhitov\LaravelRabbitMQ\Console\Commands\ConsumerCommand;
+use Arhitov\LaravelRabbitMQ\Console\Commands\ConsumerDaemonCommand;
 use Arhitov\LaravelRabbitMQ\Console\Commands\PublisherCommand;
 use Arhitov\LaravelRabbitMQ\Console\Commands\QueuePurgeCommand;
 
@@ -50,6 +51,7 @@ class LaravelRabbitMQServiceProvider extends ServiceProvider
         if ($this->app->runningInConsole()) {
             $this->commands([
                 ConsumerCommand::class,
+                ConsumerDaemonCommand::class,
                 PublisherCommand::class,
                 QueuePurgeCommand::class,
             ]);

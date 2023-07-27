@@ -70,13 +70,13 @@ class QueueMultiModeTest extends TestCase
         $this->clearQueue($config);
         $queue_config = new QueueConfig($config);
         $queue = $this->consumer->bindQueue($queue_config);
-        $info = $queue->getInfo();
+        $info = $queue->getInfoList();
         foreach ($info as $queue_name => $queue_data) {
             $this->assertFalse($queue_data['success'], 'Queue "' . $queue_name . '" exists');
             $this->assertEquals(404, $queue_data['code'], 'Queue code not 404');
         }
         $this->assertTrue($queue->declare(), 'Fail declares queue');
-        $info = $queue->getInfo();
+        $info = $queue->getInfoList();
         foreach ($info as $queue_name => $queue_data) {
             $this->assertTrue($queue_data['success'], 'Queue "' . $queue_name . '" not exists');
         }

@@ -11,10 +11,12 @@ use Arhitov\LaravelRabbitMQ\Exception\FaitSetPropertyException;
 use Arhitov\LaravelRabbitMQ\Mapping\Mapper;
 use Arhitov\LaravelRabbitMQ\Message\ConsumedMessage;
 use PhpAmqpLib\Exception\AMQPExceptionInterface;
+use PhpAmqpLib\Message\AMQPMessage;
+use Illuminate\Support\Str;
 
 class Queue
 {
-    private Connection $connect;
+    protected Connection $connect;
     protected Config $config;
 
     /**
@@ -36,8 +38,34 @@ class Queue
     }
 
     /**
-     * Извлекает последний (самый старый) элемент из очереди, уменьшая размер на одну запись.
-     * В режиме MultiMode поиск сообщения будет происходить в каждой очереди по порядку
+     * @param string $queue_name
+     * @return string
+     */
+    public function getConsumerTag(string $queue_name): string
+    {
+        $consumerTag = implode('_', [
+            Str::slug(config('app.name', 'laravel')),
+            md5(Str::random(16) . getmypid() . $queue_name),
+        ]);
+
+        return Str::substr($consumerTag, 0, 255);
+    }
+
+    /**
+     * Unlike the "pop" method, the "daemon" method works in callback mode. This method does not load RabbitMQ by polling the queue every time. Instead, it subscribes to a queue.
+     * Attention! The method does not have a termination point, you yourself need to worry about stopping it if necessary.
+     * @param bool $message_confirm Confirmation of the execution of a message from the queue
+     * @return Daemon
+     */
+    public function getDaemon(bool $message_confirm = null): Daemon
+    {
+        return new Daemon($this->connect, $this, $this->config, $message_confirm);
+    }
+
+    /**
+     * Retrieves the last (oldest) element from the queue, decrementing the size by one entry.
+     * In MultiMode mode, the search for a message will occur in each queue in order
+     * This method makes a request when needed, i.e. at the time of the call, which creates a load on polling the presence of a message in the queue. To subscribe, use the subscription method
      * @return ConsumerMessage
      * @throws QueueException
      * @throws FaitSetPropertyException
@@ -57,53 +85,101 @@ class Queue
                 continue;
             }
 
-            $consumedMessage = new ConsumedMessage(
-                $AMQPMessage->getExchange(),
-                $queue_name,
-                null,
-                $AMQPMessage->getRoutingKey(),
-                $AMQPMessage->has('timestamp') ? $AMQPMessage->get('timestamp') : null, // Properties
-            );
-
-            $consumedMessage->setBodySerialize($AMQPMessage->getBody());
-
-            if ($AMQPMessage->has('delivery_mode')) {
-                $consumedMessage->setDeliveryMode($AMQPMessage->get('delivery_mode'));
-            }
-
-            return $consumedMessage;
+            return $this->makeConsumedMessage($queue_name, $AMQPMessage);
         }
 
         return null;
     }
 
     /**
+     * @param string $queue_name
+     * @param AMQPMessage $AMQPMessage
+     * @return ConsumedMessage
+     * @throws FaitSetPropertyException
+     */
+    public function makeConsumedMessage(string $queue_name, AMQPMessage $AMQPMessage): ConsumedMessage
+    {
+        $consumedMessage = new ConsumedMessage(
+            $AMQPMessage->getExchange(),
+            $queue_name,
+            null,
+            $AMQPMessage->getRoutingKey(),
+            $AMQPMessage->has('timestamp') ? $AMQPMessage->get('timestamp') : null, // Properties
+        );
+
+        $consumedMessage->setBodySerialize($AMQPMessage->getBody());
+
+        if ($AMQPMessage->has('delivery_mode')) {
+            $consumedMessage->setDeliveryMode($AMQPMessage->get('delivery_mode'));
+        }
+
+        return $consumedMessage;
+    }
+
+    /**
+     * Queue exists
+     * @return bool
+     * @throws ConfigException
+     * @throws QueueException
+     */
+    public function isExists(): bool
+    {
+        if (! $this->config->isSingleMode()) {
+            throw new QueueException('Only allowed in SingleMode');
+        }
+        return $this->getInfoQueue($this->config->getName())['success'];
+    }
+
+    /**
      * Get queue information
-     * @return array
+     * @return array[]
+     * @throws QueueException
+     * @throws ConfigException
      */
     public function getInfo(): array
     {
+        if (! $this->config->isSingleMode()) {
+            throw new QueueException('Only allowed in SingleMode');
+        }
+        return $this->getInfoQueue($this->config->getName());
+    }
+
+    /**
+     * Get queue information
+     * @return array[]
+     */
+    public function getInfoList(): array
+    {
         $result = [];
         foreach ($this->config->getNameList() as $queue_name) {
-            try {
-                [, $messageCount, $consumerCount] = $this->connect->channel()->queue_declare(
-                    $queue_name,
-                    true
-                );
-                $result[$queue_name] = [
-                    'success' => true,
-                    'message_count' => $messageCount,
-                    'consumer_count' => $consumerCount,
-                ];
-            } catch (AMQPExceptionInterface $e) {
-                $result[$queue_name] = [
-                    'success' => false,
-                    'code' => $e->getCode(),
-                    'error' => $e->getMessage()
-                ];
-            }
+            $result[$queue_name] = $this->getInfoQueue($queue_name);
         }
         return $result;
+    }
+
+    /**
+     * @param string $queue_name
+     * @return array
+     */
+    protected function getInfoQueue(string $queue_name): array
+    {
+        try {
+            [, $messageCount, $consumerCount] = $this->connect->channel()->queue_declare(
+                $queue_name,
+                true
+            );
+            return [
+                'success' => true,
+                'message_count' => $messageCount,
+                'consumer_count' => $consumerCount,
+            ];
+        } catch (AMQPExceptionInterface $e) {
+            return [
+                'success' => false,
+                'code' => $e->getCode(),
+                'error' => $e->getMessage()
+            ];
+        }
     }
 
     /**

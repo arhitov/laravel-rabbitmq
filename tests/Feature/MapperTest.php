@@ -21,7 +21,7 @@ class MapperTest extends TestCase
         $this->clear($mapper);
 
         foreach ($mapper->getQueueList() as $queue) {
-            $info = $queue->getInfo();
+            $info = $queue->getInfoList();
             foreach ($info as $queue_name => $queue_data) {
                 $this->assertFalse($queue_data['success'], 'Queue "' . $queue_name . '" exists');
                 $this->assertEquals(404, $queue_data['code'], 'Queue code not 404');
@@ -33,7 +33,7 @@ class MapperTest extends TestCase
         $mapper->execute(true);
 
         foreach ($mapper->getQueueList() as $queue) {
-            $info = $queue->getInfo();
+            $info = $queue->getInfoList();
             foreach ($info as $queue_name => $queue_data) {
                 $this->assertTrue($queue_data['success'], 'Queue "' . $queue_name . '" not exists');
             }

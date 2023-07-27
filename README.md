@@ -1,13 +1,18 @@
 Package RabbitMQ for Laravel
 ==============
 
-![PHPUnit tests](Image/badge.svg)
+![PHPUnit tests][ico-phpunit-tests]
+![PHP][ico-php-support]
+![amqplib][ico-amqplib-support]
+[![Laravel][ico-laravel-support]][link-laravel-support]
+[![Software License][ico-license]][link-license]
 
 The LaravelRabbitMQ component is a de facto package that was designed to help you interact with the RabbitMQ message broker. LaravelRabbitMQ is based on php-amqplib.
 
 ## Supported
 * [x] Simple Queue
 * [x] Exchange
+* [x] Daemon
 * [ ] Queue Job
 
 ## Requirements
@@ -30,7 +35,7 @@ $ php artisan vendor:publish --tag="config"
 
 ## Usage
 
-See [Example](Example) folder. Also, you can ask me.
+See [Example][link-example] folder. Also, you can ask me.
 
 ## Tests
 To successfully run the tests you need to first have a stock RabbitMQ broker running locally.Then, run tests like this:
@@ -44,4 +49,18 @@ If you think this package helped you in any way, you can sponsor me! I am a free
 
 ## License
 
-LaravelRabbitMQ is open-sourced software licensed under the [MIT license](LICENSE.md).
+LaravelRabbitMQ is open-sourced software licensed under the [MIT license][link-license].
+
+## Authors
+Alexander Arhitov [clgsru@gmail.com](mailto:clgsru@gmail.com)
+
+Welcome here! :metal: 
+
+[ico-phpunit-tests]: Image/badge.svg
+[ico-php-support]: https://img.shields.io/badge/PHP-7.4+-blue.svg
+[ico-amqplib-support]: https://img.shields.io/badge/amqplib-3.0+-blue.svg
+[ico-laravel-support]: https://img.shields.io/badge/Laravel-8.x-blue.svg
+[link-laravel-support]: https://laravel.com/docs/8.x/
+[ico-license]: https://img.shields.io/badge/license-MIT-brightgreen.svg
+[link-license]: LICENSE.md
+[link-example]: Example

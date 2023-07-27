@@ -18,11 +18,11 @@ class QueueTest extends TestCase
         $this->clearQueue();
         $queue = $this->consumer->bindQueue(self::QUEUE_NAME);
         $this->assertTrue($queue->declare(), 'Fail declares queue');
-        $info = $queue->getInfo();
+        $info = $queue->getInfoList();
         $this->assertArrayHasKey(self::QUEUE_NAME, $info, 'Queue name not in list information');
         $this->assertTrue($info[self::QUEUE_NAME]['success'], 'Queue not exists');
         $this->assertTrue($queue->delete(), 'Fail delete queue');
-        $info = $queue->getInfo();
+        $info = $queue->getInfoList();
         $this->assertArrayHasKey(self::QUEUE_NAME, $info, 'Queue name not in list information');
         $this->assertFalse($info[self::QUEUE_NAME]['success'], 'Queue exists');
         $this->assertEquals(404, $info[self::QUEUE_NAME]['code'], 'Queue code not 404');
@@ -61,7 +61,7 @@ class QueueTest extends TestCase
         $this->connectTestOrSkipped();
         $this->clearQueue();
         $queue = $this->consumer->bindQueue(self::QUEUE_NAME);
-        $info = $queue->getInfo();
+        $info = $queue->getInfoList();
         $this->assertArrayHasKey(self::QUEUE_NAME, $info, 'Queue name in list information');
         foreach (['success', 'code', 'error'] as $key) {
             $this->assertArrayHasKey($key, $info[self::QUEUE_NAME], 'Checking for the presence of the "' . $key . '" key in the response structure');
@@ -70,7 +70,7 @@ class QueueTest extends TestCase
         $this->assertIsInt($info[self::QUEUE_NAME]['code'], 'Key "code" is integer');
         $this->assertIsString($info[self::QUEUE_NAME]['error'], 'Key "error" is string');
         $this->assertTrue($queue->declare(), 'Declares queue, creates if needed');
-        $info = $queue->getInfo();
+        $info = $queue->getInfoList();
         $this->assertArrayHasKey(self::QUEUE_NAME, $info, 'Queue name in list information');
         foreach (['success', 'message_count', 'consumer_count'] as $key) {
             $this->assertArrayHasKey($key, $info[self::QUEUE_NAME], 'Checking for the presence of the "' . $key . '" key in the response structure');
